@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="indigo_950">#0A0A2E</color>
+    <color name="indigo_mid">#12124A</color>
+    <color name="indigo_surface">#1A1A5E</color>
+    <color name="marigold">#FFA500</color>
+    <color name="marigold_dim">#CC8400</color>
+    <color name="pearl_white">#F5F5FF</color>
+    <color name="text_primary">#EEEEFF</color>
+    <color name="text_secondary">#AAAACC</color>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lia AI</string>
+    <string name="accessibility_service_description">Allows Lia AI to read screen content, tap, type, and scroll to execute your voice commands.</string>
+    <string name="voice_mode_notification_title">Lia is listening</string>
+    <string name="voice_mode_notification_stop">Stop</string>
+    <string name="settings_api_key_label">Gemini API Key</string>
+    <string name="settings_assistant_name_label">Assistant Name</string>
+    <string name="onboarding_tagline">Your Intelligent AI Companion</string>
+</resources>
