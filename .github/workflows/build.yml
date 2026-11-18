@@ -1,0 +1,54 @@
+name: Build Lia AI APKs
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Both Flavors (Direct & Play)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Make Gradlew Executable
+        run: chmod +x gradlew
+
+      - name: Run Unit Tests (Direct & Play flavors)
+        run: ./gradlew testDirectDebugUnitTest testPlayDebugUnitTest --stacktrace
+
+      - name: Assemble Debug APKs
+        run: ./gradlew assembleDirectDebug assemblePlayDebug --stacktrace
+
+      - name: Upload Direct Debug APK (Full Sideload Power)
+        uses: actions/upload-artifact@v4
+        with:
+          name: LiaAI-direct-debug
+          path: app/build/outputs/apk/direct/debug/*.apk
+          retention-days: 14
+
+      - name: Upload Play Debug APK (Google Play Policy Compliant)
+        uses: actions/upload-artifact@v4
+        with:
+          name: LiaAI-play-debug
+          path: app/build/outputs/apk/play/debug/*.apk
+          retention-days: 14
