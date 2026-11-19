@@ -44,14 +44,14 @@ class NovaAppState(private val context: Context) {
         orbStyle = NovaPreferences.getString(context, NovaPreferences.Keys.ORB_STYLE, "DEFAULT")
         personality = try {
             Personality.valueOf(NovaPreferences.getString(context, NovaPreferences.Keys.PERSONALITY, Personality.DEFAULT.name))
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             Personality.DEFAULT
         }
         assistantName = NovaPreferences.getString(context, NovaPreferences.Keys.ASSISTANT_NAME, AssistantBrand.NAME).ifBlank { AssistantBrand.NAME }
         userName = NovaPreferences.getString(context, NovaPreferences.Keys.USER_NAME, "")
         language = try {
             LanguagePreference.valueOf(NovaPreferences.getString(context, NovaPreferences.Keys.LANGUAGE, LanguagePreference.AUTO.name))
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             LanguagePreference.AUTO
         }
         voiceName = NovaPreferences.getString(context, NovaPreferences.Keys.VOICE_NAME, "Aoede").ifBlank { "Aoede" }

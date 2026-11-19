@@ -87,7 +87,7 @@ object VoiceSessionManager {
         scope.launch {
             try {
                 InstalledAppLabelCache.prewarm(context)
-            } catch (_: Exception) {}
+            } catch (e: Exception) {}
         }
 
         // Initialize Audio IO

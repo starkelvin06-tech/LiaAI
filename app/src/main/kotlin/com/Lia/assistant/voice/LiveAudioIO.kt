@@ -65,19 +65,19 @@ class LiveAudioIO(
                 if (AcousticEchoCanceler.isAvailable()) {
                     aec = AcousticEchoCanceler.create(sessionId)?.apply { enabled = true }
                 }
-            } catch (_: Exception) {}
+            } catch (e: Exception) {}
 
             try {
                 if (NoiseSuppressor.isAvailable()) {
                     ns = NoiseSuppressor.create(sessionId)?.apply { enabled = true }
                 }
-            } catch (_: Exception) {}
+            } catch (e: Exception) {}
 
             try {
                 if (AutomaticGainControl.isAvailable()) {
                     agc = AutomaticGainControl.create(sessionId)?.apply { enabled = true }
                 }
-            } catch (_: Exception) {}
+            } catch (e: Exception) {}
 
             record.startRecording()
             audioRecord = record
@@ -98,7 +98,7 @@ class LiveAudioIO(
                 priority = Thread.MAX_PRIORITY
                 start()
             }
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             isMicRunning.set(false)
         }
     }
@@ -112,7 +112,7 @@ class LiveAudioIO(
         try {
             audioRecord?.stop()
             audioRecord?.release()
-        } catch (_: Exception) {}
+        } catch (e: Exception) {}
         audioRecord = null
 
         aec?.release(); aec = null
@@ -169,7 +169,7 @@ class LiveAudioIO(
                     track.pause()
                     track.flush()
                     track.play()
-                } catch (_: Exception) {}
+                } catch (e: Exception) {}
             }
         }
     }
@@ -187,7 +187,7 @@ class LiveAudioIO(
             try {
                 audioTrack?.stop()
                 audioTrack?.release()
-            } catch (_: Exception) {}
+            } catch (e: Exception) {}
             audioTrack = null
         }
     }

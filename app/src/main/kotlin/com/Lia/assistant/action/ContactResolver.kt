@@ -72,7 +72,7 @@ object ContactResolver {
                     }
                 }
             }
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             return@withContext Result.NotFound
         } finally {
             cursor?.close()

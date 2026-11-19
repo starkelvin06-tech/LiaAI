@@ -130,7 +130,7 @@ class GeminiLiveClient(private val listener: Listener) {
             val root = JSONObject().put("realtimeInput", realtimeInput)
 
             ws.send(root.toString())
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             // Audio streaming exceptions must not crash
         }
     }
@@ -156,7 +156,7 @@ class GeminiLiveClient(private val listener: Listener) {
     fun disconnect() {
         try {
             webSocket?.close(1000, "User disconnected")
-        } catch (_: Exception) {
+        } catch (e: Exception) {
         }
         webSocket = null
         deduplicator.reset()
@@ -249,7 +249,7 @@ class GeminiLiveClient(private val listener: Listener) {
                     listener.onInterrupted()
                 }
             }
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             // Never log raw server messages or sensitive user payloads
         }
     }

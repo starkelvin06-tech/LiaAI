@@ -48,9 +48,9 @@ object AppLauncher {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
             true
-        } catch (_: ActivityNotFoundException) {
+        } catch (e: ActivityNotFoundException) {
             false
-        } catch (_: SecurityException) {
+        } catch (e: SecurityException) {
             false
         }
     }

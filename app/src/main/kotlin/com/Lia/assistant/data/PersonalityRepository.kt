@@ -32,7 +32,7 @@ object PersonalityRepository {
             )
             try {
                 Personality.valueOf(name)
-            } catch (_: Exception) {
+            } catch (e: Exception) {
                 Personality.DEFAULT
             }
         }
@@ -47,7 +47,7 @@ object PersonalityRepository {
             )
             try {
                 LanguagePreference.valueOf(name)
-            } catch (_: Exception) {
+            } catch (e: Exception) {
                 LanguagePreference.AUTO
             }
         }
@@ -76,25 +76,25 @@ object PersonalityRepository {
     suspend fun getPersonality(context: Context): Personality {
         return try {
             personalityFlow(context).first()
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             val name = NovaPreferences.getString(context, NovaPreferences.Keys.PERSONALITY, Personality.DEFAULT.name)
-            try { Personality.valueOf(name) } catch (_: Exception) { Personality.DEFAULT }
+            try { Personality.valueOf(name) } catch (e: Exception) { Personality.DEFAULT }
         }
     }
 
     suspend fun getLanguage(context: Context): LanguagePreference {
         return try {
             languageFlow(context).first()
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             val name = NovaPreferences.getString(context, NovaPreferences.Keys.LANGUAGE, LanguagePreference.AUTO.name)
-            try { LanguagePreference.valueOf(name) } catch (_: Exception) { LanguagePreference.AUTO }
+            try { LanguagePreference.valueOf(name) } catch (e: Exception) { LanguagePreference.AUTO }
         }
     }
 
     suspend fun getAssistantName(context: Context): String {
         return try {
             assistantNameFlow(context).first()
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             NovaPreferences.getString(context, NovaPreferences.Keys.ASSISTANT_NAME, AssistantBrand.NAME)
                 .ifBlank { AssistantBrand.NAME }
         }
@@ -103,7 +103,7 @@ object PersonalityRepository {
     suspend fun getVoiceName(context: Context): String {
         return try {
             voiceNameFlow(context).first()
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             NovaPreferences.getString(context, NovaPreferences.Keys.VOICE_NAME, "Aoede")
                 .ifBlank { "Aoede" }
         }

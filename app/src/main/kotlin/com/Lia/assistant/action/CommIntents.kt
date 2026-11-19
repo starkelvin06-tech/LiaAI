@@ -31,7 +31,7 @@ object CommIntents {
                 pm.getPackageInfo(pkg, 0)
                 intent.setPackage(pkg)
                 return intent
-            } catch (_: Exception) {}
+            } catch (e: Exception) {}
         }
 
         return intent
@@ -43,7 +43,7 @@ object CommIntents {
             try {
                 pm.getPackageInfo(pkg, 0)
                 return true
-            } catch (_: Exception) {}
+            } catch (e: Exception) {}
         }
         return false
     }
