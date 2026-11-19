@@ -31,7 +31,16 @@ jobs:
         run: chmod +x gradlew
 
       - name: Assemble Debug APKs (Direct & Play)
-        run: ./gradlew assembleDirectDebug assemblePlayDebug --stacktrace
+        run: |
+          ./gradlew assembleDirectDebug assemblePlayDebug --stacktrace 2>&1 | tee build_error.log
+
+      - name: Upload Build Error Log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-error-log
+          path: build_error.log
+          retention-days: 7
 
       - name: Upload Direct Debug APK
         uses: actions/upload-artifact@v4
