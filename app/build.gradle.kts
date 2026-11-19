@@ -1,18 +1,19 @@
 import java.util.Properties
 
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.plugin.compose")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
     namespace = "com.Lia.assistant"
-    compileSdk = 36
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.Lia.assistant"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
@@ -44,19 +45,19 @@ android {
 
     sourceSets {
         getByName("main") {
-            kotlin.srcDirs("src/main/kotlin")
+            java.srcDirs("src/main/kotlin")
         }
         getByName("direct") {
-            kotlin.srcDirs("src/direct/kotlin")
+            java.srcDirs("src/direct/kotlin")
             res.srcDirs("src/direct/res")
             manifest.srcFile("src/direct/AndroidManifest.xml")
         }
         getByName("play") {
-            kotlin.srcDirs("src/play/kotlin")
+            java.srcDirs("src/play/kotlin")
             manifest.srcFile("src/play/AndroidManifest.xml")
         }
         getByName("test") {
-            kotlin.srcDirs("src/test/kotlin")
+            java.srcDirs("src/test/kotlin")
         }
     }
 
